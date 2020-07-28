@@ -11,11 +11,7 @@ ${excel_path}     ..\\WebsiteAutomation\\TestData\\testData.xlsx
 OpenExcel
     [Documentation]    *This Testcase will open excel file*
     Open Excel Document    filename=${excel_path}    doc_id=docid
-    ${username}=    Read Excel Cell    row_num=2    col_num=1    sheet_name=Login Details
-    log    ${username}
-    ${password}=    Read Excel Cell    row_num=2    col_num=2    sheet_name=Login Details
-    log    ${password}
-    ${product_name}=    Read Excel Cell    row_num=2    col_num=1    sheet_name=Product Selection
+    ${product_name}=    Read Excel Cell    row_num=2    col_num=1    sheet_name=Product Details
     log    ${product_name}
     Close All Excel Documents
     sleep    3s
@@ -38,6 +34,20 @@ LogIn
     Input Text    xpath=(//input)[7]    ${username}
     Input Password    xpath=(//input)[8]    ${password}
     Click Element    xpath=//button/span
+    sleep    3s
+
+SearchProduct
+    [Documentation]    *This Testcase is used to search for product*
+    Open Excel Document    filename=${excel_path}    doc_id=docid
+    ${product_name}=    Read Excel Cell    row_num=2    col_num=1    sheet_name=Product Details
+    Close All Excel Documents
+    Input Text    xpath=//input[@placeholder='Search for products, brands and more']    ${product_name}
+    Click Button    xpath=//button[@type='submit']
+    sleep    3s
+
+SelectProduct
+    [Documentation]    *This Testcase is used to select product*
+    Click Element    xpath=(//div/div/div[3]/div[2]/div/div[2]/div/div/div[1])[2]
     sleep    3s
 
 LogOut
