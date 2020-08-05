@@ -29,10 +29,15 @@ LogIn
     ${username}=    Read Excel Cell    row_num=2    col_num=1    sheet_name=Login Details
     ${password}=    Read Excel Cell    row_num=2    col_num=2    sheet_name=Login Details
     Close All Excel Documents
+    Wait Until Element Is Visible    xpath=//button[contains(text(), '✕')]
     Click Button    xpath=//button[contains(text(), '✕')]
+    Wait Until Element Is Visible    xpath=//a[contains(text(), 'Login')]
     Click Element    xpath=//a[contains(text(), 'Login')]
+    Wait Until Element Is Visible    xpath=(//input)[7]
     Input Text    xpath=(//input)[7]    ${username}
+    Wait Until Element Is Visible    xpath=(//input)[8]
     Input Password    xpath=(//input)[8]    ${password}
+    Wait Until Element Is Visible    xpath=//button/span
     Click Element    xpath=//button/span
     sleep    3s
 
@@ -41,19 +46,28 @@ SearchProduct
     Open Excel Document    filename=${excel_path}    doc_id=docid
     ${product_name}=    Read Excel Cell    row_num=2    col_num=1    sheet_name=Product Details
     Close All Excel Documents
+    Wait Until Element Is Visible    xpath=//input[@placeholder='Search for products, brands and more']
     Input Text    xpath=//input[@placeholder='Search for products, brands and more']    ${product_name}
+    Wait Until Element Is Visible    xpath=//button[@type='submit']
     Click Button    xpath=//button[@type='submit']
     sleep    3s
 
 SelectProduct
     [Documentation]    *This Testcase is used to select product*
-    Click Element    xpath=(//div/div/div[3]/div[2]/div/div[2]/div/div/div[1])[2]
+    Wait Until Element Is Visible    xpath=//a[contains(@title,'Dettol Original Liquid Hand Wash Refill Hand Wash Pouch')]
+    Click Link    xpath=//a[contains(@title,'Dettol Original Liquid Hand Wash Refill Hand Wash Pouch')]
+    sleep    3s
+
+Select Window
+    [Documentation]    *This Testcase is used to select window*
+    Select Window    MAIN
     sleep    3s
 
 LogOut
     [Documentation]    *This Testcase is used to logout from the website*
+    Wait Until Element Is Visible    xpath=//div/div/div[1]/div[1]/div[2]/div[3]/div/div/div/div
     Double Click Element    xpath=//div/div/div[1]/div[1]/div[2]/div[3]/div/div/div/div
-    sleep    3s
+    Wait Until Element Is Visible    xpath=//div[2]/div[2]//li[10]/a
     Click Element    xpath=//div[2]/div[2]//li[10]/a
     sleep    3s
 
