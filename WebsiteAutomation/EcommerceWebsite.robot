@@ -4,7 +4,7 @@ Library           ExcelLibrary
 
 *** Variables ***
 ${url}            https://www.flipkart.com
-${browser}        firefox
+${browser}        chrome
 ${excel_path}     ..\\WebsiteAutomation\\TestData\\testData.xlsx
 
 *** Test Cases ***
@@ -54,8 +54,8 @@ SearchProduct
 
 SelectProduct
     [Documentation]    *This Testcase is used to select product*
-    Wait Until Element Is Visible    xpath=//a[contains(@title,'Dettol Original Liquid Hand Wash Refill Hand Wash Pouch')]
-    Click Link    xpath=//a[contains(@title,'Dettol Original Liquid Hand Wash Refill Hand Wash Pouch')]
+    Wait Until Element Is Visible    xpath=(//img[contains(@id,'supermart')]/../..//a[@class=\"_2cLu-l\"])[1]
+    Click Link    xpath=(//img[contains(@id,'supermart')]/../..//a[@class=\"_2cLu-l\"])[1]
     sleep    3s
 
 Select Window
